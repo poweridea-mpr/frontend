@@ -1,0 +1,29 @@
+box: flowup/wercker-nodejs-karma
+
+build:
+  steps:
+    - script:
+      name: install yarn
+      code: npm install -g yarn@0.22.0
+    - script:
+      name: report yarn version
+      code: yarn --version
+    - script:
+      name: set yarn cache
+      code: export YARN_CACHE=$WERCKER_CACHE_DIR/yarn
+    - script:
+      name: install dependencies
+      code: HOME=$YARN_CACHE yarn
+    - script:
+      name: build
+      code: yarn build:dev
+
+deploy-firebase:
+  steps:
+    - script:
+      name: Install firebase
+      code: npm install -g firebase-tools
+
+    - script:
+      name: Deploy to firebase
+      code: firebase --non-interactive deploy --token $FIREBASE_TOKEN
