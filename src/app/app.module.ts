@@ -8,7 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MdCheckboxModule, MdButtonModule,
          MdToolbarModule, MdInputModule, MdListModule,
          MdCardModule, MdCoreModule, MdTooltipModule,
-         MdTabsModule, MdIconModule } from '@angular/material';
+         MdTabsModule, MdIconModule, MdChipsModule,
+         MdDialogModule } from '@angular/material';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
@@ -16,12 +17,12 @@ import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { PlatformComponent } from './platform/platform.component';
 import { RisksComponent } from './platform/risks/risks.component';
-import { ProjectsComponent } from './platform/projects/projects.component';
+import { ProjectsComponent, AddProjectDialogComponent } from './platform/projects/projects.component';
 import { MapComponent } from './platform/map/map.component';
+import { AdminComponent, AddUserDialogComponent } from './platform/admin/admin.component';
 
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
-import { AdminComponent } from './platform/admin/admin.component';
 
 // routing configuration
 const appRoutes: Routes = [
@@ -61,6 +62,8 @@ export const firebaseAuthConfig = {
     ProjectsComponent,
     MapComponent,
     AdminComponent,
+    AddUserDialogComponent,
+    AddProjectDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,9 +78,14 @@ export const firebaseAuthConfig = {
     MdCheckboxModule, MdButtonModule,
     MdToolbarModule, MdInputModule, MdListModule,
     MdCardModule, MdCoreModule, MdTooltipModule,
-    MdTabsModule, MdIconModule,
+    MdTabsModule, MdIconModule, MdChipsModule,
+    MdDialogModule,
   ],
   providers: [AuthService, AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AddUserDialogComponent,
+    AddProjectDialogComponent,
+  ]
 })
 export class AppModule { }

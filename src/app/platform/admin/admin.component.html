@@ -1,3 +1,14 @@
 <p>
-  admin works!
+  Administration
 </p>
+
+<button md-button (click)="openAddUserDialog()">Add user</button>
+
+<md-list dense>
+  <md-list-item>
+    User Name - User Email
+  </md-list-item>
+  <md-list-item *ngFor="let user of users | async">
+      {{user.name}} - {{user.email}}
+  </md-list-item>
+</md-list>

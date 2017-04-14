@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { MdDialogRef, MdDialog } from '@angular/material';
+
+import { User } from '../../models';
 
 @Component({
   selector: 'app-admin',
@@ -8,9 +11,28 @@ import { AngularFire } from 'angularfire2';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  users: FirebaseListObservable<User[]>;
+
+  constructor(public dialog: MdDialog, public af: AngularFire) {
+    this.users = af.database.list('/users');
+  }
 
   ngOnInit() {
   }
 
+  openAddUserDialog() {
+    const dialogRef = this.dialog.open(AddUserDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+}
+
+@Component({
+  selector: 'app-admin-add-user-dialog',
+  template: 'Add user dialog',
+  styles: ['']
+})
+export class AddUserDialogComponent {
+  constructor(public dialogRef: MdDialogRef<AddUserDialogComponent>) {}
 }
