@@ -21,6 +21,7 @@ import { MapComponent } from './platform/map/map.component';
 
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { AdminComponent } from './platform/admin/admin.component';
 
 // routing configuration
 const appRoutes: Routes = [
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
       { path: 'risks', component: RisksComponent },
       { path: 'projects', component: ProjectsComponent },
       { path: 'map', component: MapComponent },
+      { path: 'admin', component: AdminComponent },
     ],
   },
 ];
@@ -58,6 +60,7 @@ export const firebaseAuthConfig = {
     RisksComponent,
     ProjectsComponent,
     MapComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

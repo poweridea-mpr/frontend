@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire } from 'angularfire2';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
-export class MapComponent implements OnInit {
+export class AdminComponent implements OnInit {
 
   constructor() { }
 

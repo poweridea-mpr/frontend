@@ -14,14 +14,10 @@ export class AppComponent {
   public menu: Array<{value: string, click: Function}>;
 
   constructor(private auth: AuthService, private router: Router, private changeDetector: ChangeDetectorRef) {
-    // subscribe to changes in auth state change
   }
 
   ngOnInit() {
-    /*setInterval(() => {
-      this.menu = [...this.menu, { value: 'Logout', click: () => this.auth.logout().then(() => this.router.navigate(['/'])) }];
-    }, 1500);*/
-
+    // subscribe to changes in auth state change
     this.auth.authState$.subscribe(this.onAuthStateChange.bind(this));
   }
 
@@ -32,7 +28,11 @@ export class AppComponent {
     } else {
       // authenticated user
       this.menu = [
-        { value: 'Logout', click: () => this.auth.logout().then(() => this.router.navigate(['/'])) }
+        { value: 'Logout', click: () => this.auth.logout().then(() => this.router.navigate(['/'])) },
+        { value: 'Projekty', click: () => this.router.navigate(['/platform/projects']) },
+        { value: 'Katalog Rizik', click: () => this.router.navigate(['/platform/risks']) },
+        { value: 'Mapa Rizik', click: () => this.router.navigate(['/platform/map']) },
+        { value: 'Admin', click: () => this.router.navigate(['/platform/admin']) },
       ];
     }
   }

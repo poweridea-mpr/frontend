@@ -1,7 +1,7 @@
 <md-toolbar color="primary">
     <span>PowerIdea risk management</span>
     <span *ngFor="let item of menu">
-      <button md-button>{{item.value}}</button>
+      <button md-button (click)="item.click()">{{item.value}}</button>
     </span>
 </md-toolbar>
 
