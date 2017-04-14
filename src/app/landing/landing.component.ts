@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFire, FirebaseAuthState } from 'angularfire2';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-landing',
@@ -9,7 +10,7 @@ import { AngularFire, FirebaseAuthState } from 'angularfire2';
 })
 export class LandingComponent implements OnInit {
 
-  constructor(public af: AngularFire, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,8 +20,8 @@ export class LandingComponent implements OnInit {
    * @param email
    * @param password
    */
-  login(email: string, password: String) {
-    this.af.auth.login({email: `${email}`, password: `${password}`}).then((state: FirebaseAuthState) => {
+  login(email: string, password: string) {
+    this.auth.login(email, password).then((state: FirebaseAuthState) => {
       this.router.navigate(['/platform']);
     }).catch((e: Error) => {
       console.error(e);
@@ -33,7 +34,7 @@ export class LandingComponent implements OnInit {
    * @param password
    */
   register(email: string, password: string) {
-    this.af.auth.createUser({email: email, password: password}).then((state: FirebaseAuthState) => {
+    this.auth.register(email, password).then((state: FirebaseAuthState) => {
       this.router.navigate(['/platform']);
     }).catch((e: Error) => {
       console.error(e);
