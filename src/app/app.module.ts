@@ -20,12 +20,13 @@ import { ProjectsComponent } from './platform/projects/projects.component';
 import { MapComponent } from './platform/map/map.component';
 
 import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
 
 // routing configuration
 const appRoutes: Routes = [
   { path: '', component: LandingComponent },
   {
-    path: 'platform', component: PlatformComponent,
+    path: 'platform', component: PlatformComponent, canActivate: [AuthGuard],
     children: [
       { path: 'risks', component: RisksComponent },
       { path: 'projects', component: ProjectsComponent },
@@ -73,7 +74,7 @@ export const firebaseAuthConfig = {
     MdCardModule, MdCoreModule, MdTooltipModule,
     MdTabsModule, MdIconModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
