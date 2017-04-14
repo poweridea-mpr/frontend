@@ -4,7 +4,7 @@ build:
   steps:
     - script:
       name: install yarn
-      code: npm install -g yarn@0.22.0
+      code: npm install -g yarn@0.22.0 @angular/cli@latest
     - script:
       name: report yarn version
       code: yarn --version
@@ -16,7 +16,7 @@ build:
       code: HOME=$YARN_CACHE yarn
     - script:
       name: build
-      code: yarn build:dev
+      code: ng build --aot
 
 deploy-firebase:
   steps:
