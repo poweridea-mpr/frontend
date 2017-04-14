@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AngularFire, FirebaseAuthState } from 'angularfire2';
 
 @Component({
   selector: 'app-landing',
@@ -7,14 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  login = {
-    email: '',
-    password: '',
-  };
-
-  constructor() { }
+  constructor(public af: AngularFire, private router: Router) { }
 
   ngOnInit() {
   }
 
+  /**
+   * logs in an existing user with provided credentials
+   * @param email
+   * @param password
+   */
+  login(email: string, password: String) {
+    this.af.auth.login({email: `${email}`, password: `${password}`}).then((state: FirebaseAuthState) => {
+      this.router.navigate(['/platform']);
+    }).catch((e: Error) => {
+      console.error(e);
+    });
+  }
+
+  /**
+   * registers a new user into the firebase
+   * @param email
+   * @param password
+   */
+  register(email: string, password: string) {
+    this.af.auth.createUser({email: email, password: password}).then((state: FirebaseAuthState) => {
+      this.router.navigate(['/platform']);
+    }).catch((e: Error) => {
+      console.error(e);
+    });
+  }
 }

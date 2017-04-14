@@ -10,7 +10,7 @@ import { MdCheckboxModule, MdButtonModule,
          MdCardModule, MdCoreModule, MdTooltipModule,
          MdTabsModule, MdIconModule } from '@angular/material';
 
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
@@ -43,6 +43,12 @@ export const firebaseConfig = {
   messagingSenderId: '134030378014'
 };
 
+// firebase auth config
+export const firebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password,
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +65,7 @@ export const firebaseConfig = {
     RouterModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
 
     // material
     MdCheckboxModule, MdButtonModule,

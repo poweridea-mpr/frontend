@@ -5,15 +5,14 @@
 <md-card class="auth-form">
     <md-card-content class="content">
         <md-input-container floatPlaceholder="auto">
-            <input mdInput name="email" [(ngModel)]="login.email" type="email" required
-                   placeholder="Your email address" #emailVariable maxLength="50">
-            <md-hint align="start">{{emailVariable.value.length}} / 50</md-hint>
+            <input mdInput name="email" type="email" required
+                   placeholder="Your email address" #loginEmail maxLength="50">
         </md-input-container>
         <md-input-container floatPlaceholder="auto">
-            <input mdInput name="password" [(ngModel)]="login.password" type="password" required
-                   placeholder="Your password">
+            <input mdInput name="password" type="password" required
+                   placeholder="Your password" #loginPassword>
         </md-input-container>
 
-        <button md-button color="primary" routerLink="/platform">Login</button>
+        <button md-button color="primary" (click)="login(loginEmail.value, loginPassword.value)">Login</button>
     </md-card-content>
 </md-card>
