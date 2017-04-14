@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
+  login = {
+    email: '',
+    password: '',
+  };
+
   constructor() { }
 
   ngOnInit() {

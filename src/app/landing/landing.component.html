@@ -1,3 +1,19 @@
 <p>
   landing works!
 </p>
+
+<md-card class="auth-form">
+    <md-card-content class="content">
+        <md-input-container floatPlaceholder="auto">
+            <input mdInput name="email" [(ngModel)]="login.email" type="email" required
+                   placeholder="Your email address" #emailVariable maxLength="50">
+            <md-hint align="start">{{emailVariable.value.length}} / 50</md-hint>
+        </md-input-container>
+        <md-input-container floatPlaceholder="auto">
+            <input mdInput name="password" [(ngModel)]="login.password" type="password" required
+                   placeholder="Your password">
+        </md-input-container>
+
+        <button md-button color="primary" routerLink="/platform">Login</button>
+    </md-card-content>
+</md-card>
