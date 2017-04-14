@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { MdCheckboxModule, MdButtonModule,
          MdToolbarModule, MdInputModule, MdListModule,
@@ -13,12 +13,31 @@ import { MdCheckboxModule, MdButtonModule,
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { PlatformComponent } from './platform/platform.component';
+import { RisksComponent } from './platform/risks/risks.component';
+import { ProjectsComponent } from './platform/projects/projects.component';
+import { MapComponent } from './platform/map/map.component';
+
+// routing configuration
+const appRoutes: Routes = [
+  { path: '', component: LandingComponent },
+  {
+    path: 'platform', component: PlatformComponent,
+    children: [
+      { path: 'risks', component: RisksComponent },
+      { path: 'projects', component: ProjectsComponent },
+      { path: 'map', component: MapComponent },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
-    PlatformComponent
+    PlatformComponent,
+    RisksComponent,
+    ProjectsComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +45,7 @@ import { PlatformComponent } from './platform/platform.component';
     HttpModule,
     RouterModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes),
 
     // material
     MdCheckboxModule, MdButtonModule,
