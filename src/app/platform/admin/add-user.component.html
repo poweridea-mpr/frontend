@@ -1,0 +1,26 @@
+<div class="container">
+<h2>Create new user</h2>
+
+<md-input-container floatPlaceholder="auto">
+  <input mdInput name="nickname" type="text" #nickname required placeholder="Nickname of a user">
+</md-input-container>
+<md-input-container floatPlaceholder="auto">
+  <input mdInput name="email" type="email" #email required placeholder="Email of a user">
+</md-input-container>
+<md-input-container floatPlaceholder="auto">
+  <input mdInput name="password" type="password" #password required placeholder="Password for a user">
+</md-input-container>
+<md-select placeholder="Type" #type>
+  <md-option value="1">User</md-option>
+  <md-option value="2">Manager</md-option>
+  <md-option value="3">Admin</md-option>
+</md-select>
+<md-input-container floatPlaceholder="auto">
+  <input mdInput name="name" type="text" #name required placeholder="Name of a user">
+</md-input-container>
+<md-input-container floatPlaceholder="auto">
+  <input mdInput name="phone" type="text" #phone required placeholder="Phone of a user">
+</md-input-container>
+
+<button md-button color="primary" (click)="onCreateUserButtonClick(nickname.value, email.value, password.value, type.selected.value, name.value, phone.value)">Create User</button>
+</div>

@@ -30,9 +30,20 @@ export class AdminComponent implements OnInit {
 
 @Component({
   selector: 'app-admin-add-user-dialog',
-  template: 'Add user dialog',
-  styles: ['']
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.scss']
 })
 export class AddUserDialogComponent {
   constructor(public dialogRef: MdDialogRef<AddUserDialogComponent>) {}
+
+  onCreateUserButtonClick(nickname, email, password, type, name, phone) {
+    this.dialogRef.close(<User>{
+      nickname: nickname,
+      email: email,
+      password: password,
+      type: parseInt(type, 10),
+      name: name,
+      phone: phone,
+    });
+  }
 }
