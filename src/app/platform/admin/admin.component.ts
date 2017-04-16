@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { MdDialogRef, MdDialog } from '@angular/material';
 
+import { AuthService } from '../../auth.service';
 import { User } from '../../models';
 
 @Component({
@@ -13,7 +14,16 @@ export class AdminComponent implements OnInit {
 
   users: FirebaseListObservable<User[]>;
 
-  constructor(public dialog: MdDialog, public af: AngularFire) {
+  columns = [
+    {name: 'Nickname'},
+    {name: 'Email'},
+    //{name: 'Password'},
+    {name: 'Type'},
+    {name: 'Name'},
+    {name: 'Phone'},
+  ];
+
+  constructor(public dialog: MdDialog, public af: AngularFire, public auth: AuthService) {
     this.users = af.database.list('/users');
   }
 
@@ -22,8 +32,10 @@ export class AdminComponent implements OnInit {
 
   openAddUserDialog() {
     const dialogRef = this.dialog.open(AddUserDialogComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe((result: User) => {
+      this.auth.register(result.email, result.password);
+      delete result.password; // remove from the object
+      this.users.push(result);
     });
   }
 }

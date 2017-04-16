@@ -4,11 +4,12 @@
 
 <button md-button (click)="openAddUserDialog()">Add user</button>
 
-<md-list dense>
-  <md-list-item>
-    User Name - User Email
-  </md-list-item>
-  <md-list-item *ngFor="let user of users | async">
-      {{user.name}} - {{user.email}}
-  </md-list-item>
-</md-list>
+<ngx-datatable
+  class="material striped"
+  [rows]="users | async"
+  [columns]="columns"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="50">
+</ngx-datatable>
