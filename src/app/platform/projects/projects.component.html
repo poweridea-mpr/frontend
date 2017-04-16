@@ -1,5 +1,15 @@
-<p>
+<h2>
   Projects
-</p>
+</h2>
 
 <button md-button (click)="openAddProjectDialog()">Add project</button>
+
+<ngx-datatable
+  class="material striped"
+  [rows]="projects | async"
+  [columns]="columns"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="50">
+</ngx-datatable>

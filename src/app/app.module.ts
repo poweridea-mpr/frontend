@@ -13,6 +13,8 @@ import { MdCheckboxModule, MdButtonModule,
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { PlatformComponent } from './platform/platform.component';
@@ -31,7 +33,9 @@ const appRoutes: Routes = [
     path: 'platform', component: PlatformComponent, canActivate: [AuthGuard],
     children: [
       { path: 'risks', component: RisksComponent },
+      { path: 'risks/:project', component: RisksComponent }, // risks for a project
       { path: 'projects', component: ProjectsComponent },
+      { path: 'projects/:owner', component: ProjectsComponent }, // projects for an owner
       { path: 'map', component: MapComponent },
       { path: 'admin', component: AdminComponent },
     ],
@@ -73,6 +77,7 @@ export const firebaseAuthConfig = {
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
+    NgxDatatableModule,
 
     // material
     MdCheckboxModule, MdButtonModule,

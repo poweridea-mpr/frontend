@@ -14,8 +14,15 @@ export class ProjectsComponent implements OnInit {
 
   projects: FirebaseListObservable<Project[]>;
 
+  columns = [
+    {name: 'Name'},
+    {name: 'Owner'},
+    {name: 'Description'},
+    {name: 'Goal'},
+  ];
+
   constructor(public af: AngularFire, public dialog: MdDialog) {
-    this.af.database.list('/projects');
+    this.projects = this.af.database.list('/projects');
   }
 
   ngOnInit() {

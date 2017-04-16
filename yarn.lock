@@ -133,6 +133,10 @@
     magic-string "^0.19.0"
     source-map "^0.5.6"
 
+"@swimlane/ngx-datatable@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@swimlane/ngx-datatable/-/ngx-datatable-8.0.0.tgz#6777097ed40720b0c776e3d9c2dc5d0b5f0f44ae"
+
 "@types/jasmine@2.5.38":
   version "2.5.38"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"

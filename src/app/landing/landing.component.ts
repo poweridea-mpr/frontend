@@ -22,7 +22,7 @@ export class LandingComponent implements OnInit {
    */
   login(email: string, password: string) {
     this.auth.login(email, password).then((state: FirebaseAuthState) => {
-      this.router.navigate(['/platform']);
+      this.router.navigate(['/platform/projects']);
     }).catch((e: Error) => {
       console.error(e);
     });
@@ -35,7 +35,7 @@ export class LandingComponent implements OnInit {
    */
   register(email: string, password: string) {
     this.auth.register(email, password).then((state: FirebaseAuthState) => {
-      this.router.navigate(['/platform']);
+      this.router.navigate(['/platform/projects']);
     }).catch((e: Error) => {
       console.error(e);
     });
