@@ -22,6 +22,7 @@ export class RisksComponent implements OnInit {
     {name: 'Description'},
     {name: 'Level'},
     {name: 'Duration'},
+    {name: 'Value'},
     {name: 'Actions'}
   ];
 
@@ -52,7 +53,7 @@ export class RisksComponent implements OnInit {
     dialogRef.afterClosed().subscribe(newRisk => {
       if (!newRisk) return;
 
-      newRisk = Object.keys(risk).filter(key => newRisk[key] !== risk[key]).reduce((acc, key) => ({...acc, [key]: newRisk[key]}), {}); // new
+      newRisk = Object.keys(newRisk).filter(key => newRisk[key] !== risk[key]).reduce((acc, key) => ({...acc, [key]: newRisk[key]}), {}); // new
       delete newRisk.$$index;
       // update the object
       if (Object.keys(newRisk).length > 0) {
@@ -106,7 +107,7 @@ export class AddRiskDialogComponent {
     this.projects = af.database.list('/projects');
   }
 
-  onCreateRiskButtonClick(name, project, owner, description, level, from, to) {
+  onCreateRiskButtonClick(name, project, owner, description, level, from, to, value) {
     this.dialogRef.close(<Risk>{
       name: name,
       project: project,
@@ -114,7 +115,8 @@ export class AddRiskDialogComponent {
       description: description,
       level: level,
       from: from,
-      to: to
+      to: to,
+      value: value
     });
   }
 }

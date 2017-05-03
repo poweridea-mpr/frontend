@@ -14,4 +14,5 @@ export interface Risk {
     level: string;
     from: Date;
     to: Date;
+    value: number;
 }

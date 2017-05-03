@@ -45,5 +45,9 @@
   <md-option value="High">High</md-option>
 </md-autocomplete>
 
-<button md-button color="primary" (click)="onCreateRiskButtonClick(name.value, project.value, owner.value, description.value, level.value, from.value, to.value)">Create Risk</button>
+<md-input-container>
+  <input mdInput [value]="data?.value" type="number" placeholder="Value" #value required />
+</md-input-container>
+
+<button md-button color="primary" (click)="onCreateRiskButtonClick(name.value, project.value, owner.value, description.value, level.value, from.value, to.value, value.value)">Create Risk</button>
 </div>

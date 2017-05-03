@@ -50,7 +50,7 @@ export class ProjectsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(newProject => {
       if (!newProject) return;
 
-      newProject = Object.keys(project).filter(key => newProject[key] !== project[key]).reduce((acc, key) => ({...acc, [key]: newProject[key]}), {}); // new
+      newProject = Object.keys(newProject).filter(key => newProject[key] !== project[key]).reduce((acc, key) => ({...acc, [key]: newProject[key]}), {}); // new
       delete newProject.$$index;
       // update the object
       if (Object.keys(newProject).length > 0) {

@@ -42,6 +42,12 @@
       {{row.from}} - {{row.to}}
     </ng-template>
   </ngx-datatable-column>
+  <ngx-datatable-column name="Value">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      <span *ngIf="value">{{value}} CZK</span>
+      <span *ngIf="!value">0 CZK</span>
+    </ng-template>
+  </ngx-datatable-column>
   <ngx-datatable-column name="Actions">
     <ng-template ngx-datatable-cell-template let-row="row">
       <a md-mini-fab (click)="openEditRiskDialog(row)"><md-icon>mode_edit</md-icon></a>
