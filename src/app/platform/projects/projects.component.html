@@ -11,7 +11,37 @@
   [columnMode]="'force'"
   [headerHeight]="50"
   [footerHeight]="50"
-  [rowHeight]="50"
-  [selectionType]="'row'"
-  (select)="onProjectSelect($event)">
+  [rowHeight]="50">
+  <ngx-datatable-column name="ID">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Name">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Owner">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Description">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Goal">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Actions">
+    <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+      <a md-mini-fab (click)="onProjectSelect(row.id)"><md-icon>error_outline</md-icon></a>
+      <a md-mini-fab (click)="openEditProjectDialog(row)"><md-icon>mode_edit</md-icon></a>
+      <a md-mini-fab><md-icon>clear</md-icon></a>
+    </ng-template>
+  </ngx-datatable-column>
 </ngx-datatable>

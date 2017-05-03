@@ -21,6 +21,7 @@ export class ProjectsComponent implements OnInit {
     {name: 'Owner'},
     {name: 'Description'},
     {name: 'Goal'},
+    {name: 'Actions'}
   ];
 
   constructor(public af: AngularFire, public dialog: MdDialog, public router: Router) {
@@ -39,8 +40,17 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
+  openEditProjectDialog(row: Project) {
+    const dialogRef = this.dialog.open(AddProjectDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) return;
+      // create new project
+      console.log(result);
+    });
+  }
+
   onProjectSelect(event) {
-    this.router.navigate([`/platform/risks/${event.selected[0].id}`]);
+    this.router.navigate([`/platform/risks/`, event]);
   }
 }
 
