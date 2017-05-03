@@ -26,6 +26,7 @@ import { AdminComponent, AddUserDialogComponent } from './platform/admin/admin.c
 
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { FooterComponent } from './platform/footer/footer.component';
 
 // routing configuration
 const appRoutes: Routes = [
@@ -70,6 +71,7 @@ export const firebaseAuthConfig = {
     AdminComponent,
     AddUserDialogComponent,
     AddProjectDialogComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

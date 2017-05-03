@@ -29,9 +29,9 @@ export class AppComponent {
       // authenticated user
       this.menu = [
         { value: 'Logout', click: () => this.auth.logout().then(() => this.router.navigate(['/'])) },
-        { value: 'Projekty', click: () => this.router.navigate(['/platform/projects']) },
-        { value: 'Katalog Rizik', click: () => this.router.navigate(['/platform/risks']) },
-        { value: 'Mapa Rizik', click: () => this.router.navigate(['/platform/map']) },
+        { value: 'Projects', click: () => this.router.navigate(['/platform/projects']) },
+        { value: 'Risks', click: () => this.router.navigate(['/platform/risks']) },
+        { value: 'Map of risks', click: () => this.router.navigate(['/platform/map']) },
         { value: 'Admin', click: () => this.router.navigate(['/platform/admin']) },
       ];
     }
