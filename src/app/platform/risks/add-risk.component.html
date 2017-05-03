@@ -30,11 +30,20 @@
 <md-input-container>
   <input mdInput placeholder="Level" [value]="data?.level" #level [mdAutocomplete]="autoLevel" [formControl]="levelStateCtrl">
 </md-input-container>
+
+<md-input-container>
+  <input mdInput [value]="data?.from" type="date" placeholder="From" #from required />
+</md-input-container>
+
+<md-input-container>
+  <input mdInput [value]="data?.to" type="date" placeholder="To" #to required />
+</md-input-container>
+
 <md-autocomplete #autoLevel="mdAutocomplete">
   <md-option value="Low">Low</md-option>
   <md-option value="Medium">Medium</md-option>
   <md-option value="High">High</md-option>
 </md-autocomplete>
 
-<button md-button color="primary" (click)="onCreateRiskButtonClick(name.value, project.value, owner.value, description.value, level.value)">Create Risk</button>
+<button md-button color="primary" (click)="onCreateRiskButtonClick(name.value, project.value, owner.value, description.value, level.value, from.value, to.value)">Create Risk</button>
 </div>

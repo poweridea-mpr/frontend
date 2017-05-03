@@ -95,7 +95,7 @@ export class AddRiskDialogComponent {
   filteredUsers: any;
   filteredProjects: any;
 
-  data: Risk = <Risk>{};
+  data: Risk;
 
   constructor(public af: AngularFire, public dialogRef: MdDialogRef<AddRiskDialogComponent>) {
     this.ownerStateCtrl = new FormControl();
@@ -106,13 +106,15 @@ export class AddRiskDialogComponent {
     this.projects = af.database.list('/projects');
   }
 
-  onCreateRiskButtonClick(name, project, owner, description, level) {
+  onCreateRiskButtonClick(name, project, owner, description, level, from, to) {
     this.dialogRef.close(<Risk>{
       name: name,
       project: project,
       owner: owner,
       description: description,
       level: level,
+      from: from,
+      to: to
     });
   }
 }
