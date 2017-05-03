@@ -9,8 +9,8 @@
   <input mdInput placeholder="Project" #project [mdAutocomplete]="autoProjects" [formControl]="projectStateCtrl">
 </md-input-container>
 <md-autocomplete #autoProjects="mdAutocomplete">
-  <md-option *ngFor="let user of filteredProjects | async" [value]="project">
-    {{ user }}
+  <md-option *ngFor="let project of projects | async" [value]="project.id">
+    {{ project.id }}
   </md-option>
 </md-autocomplete>
 
@@ -18,8 +18,8 @@
   <input mdInput placeholder="Owner" #owner [mdAutocomplete]="autoOwner" [formControl]="ownerStateCtrl">
 </md-input-container>
 <md-autocomplete #autoOwner="mdAutocomplete">
-  <md-option *ngFor="let user of filteredUsers | async" [value]="user">
-    {{ user }}
+  <md-option *ngFor="let user of users | async" [value]="user.nickname">
+    {{ user.nickname }}
   </md-option>
 </md-autocomplete>
 

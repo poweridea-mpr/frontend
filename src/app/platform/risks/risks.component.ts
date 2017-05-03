@@ -4,7 +4,7 @@ import { FormControl } from '@angular/forms';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { MdDialogRef, MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import { Risk } from '../../models';
+import { Risk, User, Project } from '../../models';
 
 @Component({
   selector: 'app-risks',
@@ -57,10 +57,21 @@ export class AddRiskDialogComponent {
   projectStateCtrl: FormControl;
   levelStateCtrl: FormControl;
 
+  // all users for owner autocomplete
+  users: FirebaseListObservable<User[]>;
+  // all projects for validation
+  projects: FirebaseListObservable<Project[]>;
+
+  filteredUsers: any;
+  filteredProjects: any;
+
   constructor(public af: AngularFire, public dialogRef: MdDialogRef<AddRiskDialogComponent>) {
     this.ownerStateCtrl = new FormControl();
     this.projectStateCtrl = new FormControl();
     this.levelStateCtrl = new FormControl();
+
+    this.users = af.database.list('/users');
+    this.projects = af.database.list('/projects');
   }
 
   onCreateRiskButtonClick(name, project, owner, description, level) {
