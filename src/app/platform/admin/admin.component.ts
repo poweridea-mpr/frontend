@@ -27,6 +27,7 @@ export class AdminComponent implements OnInit {
     {name: 'Type'},
     {name: 'Name'},
     {name: 'Phone'},
+    {name: 'Actions'}
   ];
 
   constructor(public dialog: MdDialog, public af: AngularFire, public auth: AuthService) {

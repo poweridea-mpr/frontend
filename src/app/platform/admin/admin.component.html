@@ -12,4 +12,34 @@
   [headerHeight]="50"
   [footerHeight]="50"
   [rowHeight]="50">
+  <ngx-datatable-column name="Nickname">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Email">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Type">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Name">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Phone">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Actions">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <a md-mini-fab (click)="openEditUserDialog(row)"><md-icon>mode_edit</md-icon></a>
+    </ng-template>
+  </ngx-datatable-column>
 </ngx-datatable>
