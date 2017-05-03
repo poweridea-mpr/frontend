@@ -1,10 +1,13 @@
 export class RiskLevel {
-    static Low = 'low';
-    static Medium = 'medium';
-    static High = 'high';
+    static Low = 'Low';
+    static Medium = 'Medium';
+    static High = 'High';
 }
 
 export interface Risk {
     name: string;
+    project: string;
+    owner: string;
+    description: string;
     level: string;
 }

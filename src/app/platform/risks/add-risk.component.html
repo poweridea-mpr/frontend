@@ -1,0 +1,40 @@
+<div class="container">
+<h2>Create new risk</h2>
+
+<md-input-container floatPlaceholder="auto">
+  <input mdInput name="name" type="text" #name required placeholder="Name of the risk">
+</md-input-container>
+
+<md-input-container>
+  <input mdInput placeholder="Project" #project [mdAutocomplete]="autoProjects" [formControl]="projectStateCtrl">
+</md-input-container>
+<md-autocomplete #autoProjects="mdAutocomplete">
+  <md-option *ngFor="let user of filteredUsers | async" [value]="user">
+    {{ user }}
+  </md-option>
+</md-autocomplete>
+
+<md-input-container>
+  <input mdInput placeholder="Owner" #owner [mdAutocomplete]="autoOwner" [formControl]="ownerStateCtrl">
+</md-input-container>
+<md-autocomplete #autoOwner="mdAutocomplete">
+  <md-option *ngFor="let user of filteredUsers | async" [value]="user">
+    {{ user }}
+  </md-option>
+</md-autocomplete>
+
+<md-input-container>
+  <textarea mdInput placeholder="Description" #description required></textarea>
+</md-input-container>
+
+<md-input-container>
+  <input mdInput placeholder="Level" #level [mdAutocomplete]="autoLevel" [formControl]="levelStateCtrl">
+</md-input-container>
+<md-autocomplete #autoLevel="mdAutocomplete">
+  <md-option value="Low">Low</md-option>
+  <md-option value="Medium">Medium</md-option>
+  <md-option value="High">High</md-option>
+</md-autocomplete>
+
+<button md-button color="primary" (click)="onCreateRiskButtonClick(name.value, project.value, owner.value, description.value, level.value)">Create Project</button>
+</div>
