@@ -74,6 +74,7 @@ export const firebaseAuthConfig = {
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpModule,
     RouterModule,
     BrowserAnimationsModule,

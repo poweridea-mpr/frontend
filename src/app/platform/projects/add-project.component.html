@@ -1,8 +1,8 @@
-<div class="container">
+<form class="container" (ngSubmit)="onCreateProjectButtonClick($event, name.value, id.value, owner.value, description.value, goal.value)">
 <h2>Create new project</h2>
 
 <md-input-container floatPlaceholder="auto">
-  <input mdInput name="name" type="text" #name required placeholder="Name of the project">
+  <input mdInput name="name" [value]="data.name" type="text" #name required placeholder="Name of the project">
 </md-input-container>
 
 <md-input-container floatPlaceholder="auto">
@@ -10,7 +10,7 @@
 </md-input-container>
 
 <md-input-container>
-  <input mdInput placeholder="Owner" #owner [mdAutocomplete]="auto" [formControl]="ownerStateCtrl">
+  <input mdInput placeholder="Owner" [value]="data.owner" #owner [mdAutocomplete]="auto" [formControl]="ownerStateCtrl">
 </md-input-container>
 <md-autocomplete #auto="mdAutocomplete">
   <md-option *ngFor="let user of filteredUsers | async" [value]="user">
@@ -19,10 +19,11 @@
 </md-autocomplete>
 
 <md-input-container>
-  <textarea mdInput placeholder="Description" #description required></textarea>
+  <textarea mdInput [value]="data.description" placeholder="Description" #description required></textarea>
 </md-input-container>
 <md-input-container>
-  <textarea mdInput placeholder="Goal" #goal required></textarea>
+  <textarea mdInput [value]="data.goal" placeholder="Goal" #goal required></textarea>
 </md-input-container>
-<button md-button color="primary" (click)="onCreateProjectButtonClick(name.value, id.value, owner.value, description.value, goal.value)">Create Project</button>
-</div>
+<button md-button color="primary" type="submit">Create Project</button>
+
+</form>

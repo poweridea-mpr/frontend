@@ -40,14 +40,19 @@ export class ProjectsComponent implements OnInit {
     });
   }
 
-  openEditProjectDialog(row: Project) {
-    console.log(row);
+  openEditProjectDialog(project: Project) {
     const dialogRef = this.dialog.open(AddProjectDialogComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result) return;
-      // create new project
-      console.log(result);
+    dialogRef.afterClosed().subscribe(newProject => {
+      if (!newProject) return;
+
+      newProject = Object.keys(project).filter(key => newProject[key] !== project[key]).reduce((acc, key) => ({...acc, [key]: newProject[key]}), {}); // new
+      delete newProject.$$index;
+      // update the object
+      if (Object.keys(newProject).length > 0) {
+        this.projects.update(project.$key, newProject);
+      }
     });
+    (<any>dialogRef.componentInstance).data = project;
   }
 
   onProjectSelect(event) {
@@ -83,6 +88,8 @@ export class AddProjectDialogComponent {
 
   owners: string[];
 
+  data: Project;
+
   // autocomplete form control
   ownerStateCtrl: FormControl;
   filteredUsers: any;
@@ -106,7 +113,7 @@ export class AddProjectDialogComponent {
     return name ? this.owners.filter((o) => o.indexOf(name) !== -1) : this.owners;
   }
 
-  onCreateProjectButtonClick(name, id, owner, description, goal) {
+  onCreateProjectButtonClick(form, name, id, owner, description, goal) {
     this.dialogRef.close(<Project>{
       id: id,
       name: name,
