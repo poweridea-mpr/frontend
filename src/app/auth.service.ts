@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { AngularFire, FirebaseAuthState } from 'angularfire2';
+import { AngularFire, FirebaseAuthState, FirebaseListObservable } from 'angularfire2';
+import { User } from './models';
 
 @Injectable()
 export class AuthService {
+
+  users: FirebaseListObservable<User[]>;
 
   // readonly observable from the auth state
   get authState$(): Observable<FirebaseAuthState> {
@@ -12,6 +15,7 @@ export class AuthService {
   }
 
   constructor(public af: AngularFire) {
+    this.users = this.af.database.list('/users');
   }
 
   /**
