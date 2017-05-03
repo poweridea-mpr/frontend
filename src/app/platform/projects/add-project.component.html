@@ -1,5 +1,5 @@
 <form class="container" (ngSubmit)="onCreateProjectButtonClick($event, name.value, id.value, owner.value, description.value, goal.value)">
-<h2>Create new project</h2>
+<h2>Create/Edit the project</h2>
 
 <md-input-container floatPlaceholder="auto">
   <input mdInput name="name" [value]="data?.name" type="text" #name required placeholder="Name of the project">

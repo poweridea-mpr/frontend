@@ -1,12 +1,12 @@
 <div class="container">
-<h2>Create new risk</h2>
+<h2>Create/Edit the risk</h2>
 
 <md-input-container floatPlaceholder="auto">
-  <input mdInput name="name" type="text" #name required placeholder="Name of the risk">
+  <input mdInput name="name" [value]="data?.name" type="text" #name required placeholder="Name of the risk">
 </md-input-container>
 
 <md-input-container>
-  <input mdInput placeholder="Project" #project [mdAutocomplete]="autoProjects" [formControl]="projectStateCtrl">
+  <input mdInput placeholder="Project" [value]="data?.project" #project [mdAutocomplete]="autoProjects" [formControl]="projectStateCtrl">
 </md-input-container>
 <md-autocomplete #autoProjects="mdAutocomplete">
   <md-option *ngFor="let project of projects | async" [value]="project.id">
@@ -15,7 +15,7 @@
 </md-autocomplete>
 
 <md-input-container>
-  <input mdInput placeholder="Owner" #owner [mdAutocomplete]="autoOwner" [formControl]="ownerStateCtrl">
+  <input mdInput placeholder="Owner" [value]="data?.owner" #owner [mdAutocomplete]="autoOwner" [formControl]="ownerStateCtrl">
 </md-input-container>
 <md-autocomplete #autoOwner="mdAutocomplete">
   <md-option *ngFor="let user of users | async" [value]="user.nickname">
@@ -24,11 +24,11 @@
 </md-autocomplete>
 
 <md-input-container>
-  <textarea mdInput placeholder="Description" #description required></textarea>
+  <textarea mdInput [value]="data?.description" placeholder="Description" #description required></textarea>
 </md-input-container>
 
 <md-input-container>
-  <input mdInput placeholder="Level" #level [mdAutocomplete]="autoLevel" [formControl]="levelStateCtrl">
+  <input mdInput placeholder="Level" [value]="data?.level" #level [mdAutocomplete]="autoLevel" [formControl]="levelStateCtrl">
 </md-input-container>
 <md-autocomplete #autoLevel="mdAutocomplete">
   <md-option value="Low">Low</md-option>

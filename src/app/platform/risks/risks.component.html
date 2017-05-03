@@ -12,4 +12,40 @@
   [headerHeight]="50"
   [footerHeight]="50"
   [rowHeight]="50">
+  <ngx-datatable-column name="Name">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Project">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Owner">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Description">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Level">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Duration">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      {{row.from}} - {{row.to}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Actions">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <a md-mini-fab (click)="openEditRiskDialog(row)"><md-icon>mode_edit</md-icon></a>
+      <a md-mini-fab (click)="deleteRisk(row)"><md-icon>clear</md-icon></a>
+    </ng-template>
+  </ngx-datatable-column>
 </ngx-datatable>

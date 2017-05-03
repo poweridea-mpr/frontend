@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
-import { MdDialogRef, MdDialog } from '@angular/material';
+import { MdDialogRef, MdDialog, MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Risk, User, Project } from '../../models';
 
@@ -20,10 +20,12 @@ export class RisksComponent implements OnInit {
     {name: 'Project'},
     {name: 'Owner'},
     {name: 'Description'},
-    {name: 'Level'}
+    {name: 'Level'},
+    {name: 'Duration'},
+    {name: 'Actions'}
   ];
 
-  constructor(public af: AngularFire, public dialog: MdDialog, public route: ActivatedRoute) {
+  constructor(public af: AngularFire, public dialog: MdDialog, public route: ActivatedRoute, public snackBar: MdSnackBar) {
     this.route.params.subscribe((params) => {
       this.risks = af.database.list('/risks', {
         query: {
@@ -45,6 +47,34 @@ export class RisksComponent implements OnInit {
     });
   }
 
+  openEditRiskDialog(risk: Risk) {
+    const dialogRef = this.dialog.open(AddRiskDialogComponent);
+    dialogRef.afterClosed().subscribe(newRisk => {
+      if (!newRisk) return;
+
+      newRisk = Object.keys(risk).filter(key => newRisk[key] !== risk[key]).reduce((acc, key) => ({...acc, [key]: newRisk[key]}), {}); // new
+      delete newRisk.$$index;
+      // update the object
+      if (Object.keys(newRisk).length > 0) {
+        this.risks.update(risk.$key, newRisk);
+      }
+    });
+    (<any>dialogRef.componentInstance).data = risk;
+  }
+
+  deleteRisk(risk: Risk) {
+    const bar = this.snackBar.open('Undo the deletion', 'Undo', {
+      duration: 10000
+    });
+
+    bar.onAction().subscribe(() => {
+      let proj = Object.assign({}, risk);
+      delete proj.$$index;
+      this.risks.push(proj);
+    });
+
+    this.risks.remove(risk.$key);
+  }
 }
 
 @Component({
@@ -64,6 +94,8 @@ export class AddRiskDialogComponent {
 
   filteredUsers: any;
   filteredProjects: any;
+
+  data: Risk = <Risk>{};
 
   constructor(public af: AngularFire, public dialogRef: MdDialogRef<AddRiskDialogComponent>) {
     this.ownerStateCtrl = new FormControl();

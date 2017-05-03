@@ -5,6 +5,8 @@ export class RiskLevel {
 }
 
 export interface Risk {
+    $$index: number;
+    $key: string;
     name: string;
     project: string;
     owner: string;
