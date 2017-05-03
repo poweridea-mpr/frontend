@@ -14,6 +14,7 @@
             </md-input-container>
 
             <button md-button color="primary" (click)="login(loginEmail.value, loginPassword.value)">Login</button>
+            <p style="color: red">{{loginError}}</p>
           </div>
         </md-tab>
         <md-tab label="Registrace">
@@ -28,6 +29,7 @@
             </md-input-container>
 
             <button md-button color="primary" (click)="register(regEmail.value, regPassword.value)">Registrovat se</button>
+            <p style="color: red">{{registerError}}</p>
           </div>
         </md-tab>
       </md-tab-group>

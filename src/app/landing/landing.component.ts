@@ -10,6 +10,10 @@ import { AuthService } from '../auth.service';
 })
 export class LandingComponent implements OnInit {
 
+  // error from the API
+  loginError = '';
+  registerError = '';
+
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -21,10 +25,12 @@ export class LandingComponent implements OnInit {
    * @param password
    */
   login(email: string, password: string) {
+    this.loginError = '';
+
     this.auth.login(email, password).then((state: FirebaseAuthState) => {
       this.router.navigate(['/platform/projects']);
     }).catch((e: Error) => {
-      console.error(e);
+      this.loginError = e.message;
     });
   }
 
@@ -34,10 +40,12 @@ export class LandingComponent implements OnInit {
    * @param password
    */
   register(email: string, password: string) {
+    this.registerError = '';
+
     this.auth.register(email, password).then((state: FirebaseAuthState) => {
       this.router.navigate(['/platform/projects']);
     }).catch((e: Error) => {
-      console.error(e);
+      this.registerError = e.message;
     });
   }
 }
