@@ -14,6 +14,8 @@ import { Project, User } from '../../models';
 export class ProjectsComponent implements OnInit {
 
   projects: FirebaseListObservable<Project[]>;
+  data: Project[] = [];
+  filterVal = '';
 
   columns = [
     {name: 'ID'},
@@ -26,6 +28,9 @@ export class ProjectsComponent implements OnInit {
 
   constructor(public af: AngularFire, public dialog: MdDialog, public router: Router, public snackBar: MdSnackBar) {
     this.projects = this.af.database.list('/projects');
+    this.projects.subscribe(data => {
+      this.data = data
+    });
   }
 
   ngOnInit() {
@@ -71,6 +76,16 @@ export class ProjectsComponent implements OnInit {
     });
 
     this.projects.remove(project.$key);
+  }
+
+  get filteredData() {
+    return this.data.filter(item => (
+      item.description.startsWith(this.filterVal) ||
+      item.goal.startsWith(this.filterVal) ||
+      item.id.startsWith(this.filterVal) ||
+      item.name.startsWith(this.filterVal) ||
+      item.owner.startsWith(this.filterVal)
+    ));
   }
 }
 
