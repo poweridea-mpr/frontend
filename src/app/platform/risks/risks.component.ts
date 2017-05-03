@@ -25,7 +25,12 @@ export class RisksComponent implements OnInit {
 
   constructor(public af: AngularFire, public dialog: MdDialog, public route: ActivatedRoute) {
     this.route.params.subscribe((params) => {
-      this.risks = af.database.list('/risks');
+      this.risks = af.database.list('/risks', {
+        query: {
+          orderByChild: 'project',
+          equalTo: params.project? params.project : undefined,
+        }
+      });
     });
   }
 

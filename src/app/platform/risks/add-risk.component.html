@@ -9,7 +9,7 @@
   <input mdInput placeholder="Project" #project [mdAutocomplete]="autoProjects" [formControl]="projectStateCtrl">
 </md-input-container>
 <md-autocomplete #autoProjects="mdAutocomplete">
-  <md-option *ngFor="let user of filteredUsers | async" [value]="user">
+  <md-option *ngFor="let user of filteredProjects | async" [value]="project">
     {{ user }}
   </md-option>
 </md-autocomplete>
@@ -36,5 +36,5 @@
   <md-option value="High">High</md-option>
 </md-autocomplete>
 
-<button md-button color="primary" (click)="onCreateRiskButtonClick(name.value, project.value, owner.value, description.value, level.value)">Create Project</button>
+<button md-button color="primary" (click)="onCreateRiskButtonClick(name.value, project.value, owner.value, description.value, level.value)">Create Risk</button>
 </div>
