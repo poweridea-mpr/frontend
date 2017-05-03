@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router} from '@angular/router';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
-import { MdDialogRef, MdDialog } from '@angular/material';
+import { MdDialogRef, MdDialog, MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Project, User } from '../../models';
 
@@ -24,7 +24,7 @@ export class ProjectsComponent implements OnInit {
     {name: 'Actions'}
   ];
 
-  constructor(public af: AngularFire, public dialog: MdDialog, public router: Router) {
+  constructor(public af: AngularFire, public dialog: MdDialog, public router: Router, public snackBar: MdSnackBar) {
     this.projects = this.af.database.list('/projects');
   }
 
@@ -41,6 +41,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   openEditProjectDialog(row: Project) {
+    console.log(row);
     const dialogRef = this.dialog.open(AddProjectDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (!result) return;
@@ -51,6 +52,20 @@ export class ProjectsComponent implements OnInit {
 
   onProjectSelect(event) {
     this.router.navigate([`/platform/risks/`, event]);
+  }
+
+  deleteProject(project: Project) {
+    const bar = this.snackBar.open('Undo the deletion', 'Undo', {
+      duration: 10000
+    });
+
+    bar.onAction().subscribe(() => {
+      let proj = Object.assign({}, project);
+      delete proj.$$index;
+      this.projects.push(proj);
+    });
+
+    this.projects.remove(project.$key);
   }
 }
 

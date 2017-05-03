@@ -1,5 +1,7 @@
 
 export interface Project {
+  $$index
+  $key: string;
   id: string;
   name: string;
   owner: string;

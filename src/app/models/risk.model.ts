@@ -10,4 +10,6 @@ export interface Risk {
     owner: string;
     description: string;
     level: string;
+    from: Date;
+    to: Date;
 }

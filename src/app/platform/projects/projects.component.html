@@ -41,7 +41,7 @@
     <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
       <a md-mini-fab (click)="onProjectSelect(row.id)"><md-icon>error_outline</md-icon></a>
       <a md-mini-fab (click)="openEditProjectDialog(row)"><md-icon>mode_edit</md-icon></a>
-      <a md-mini-fab><md-icon>clear</md-icon></a>
+      <a md-mini-fab (click)="deleteProject(row)"><md-icon>clear</md-icon></a>
     </ng-template>
   </ngx-datatable-column>
 </ngx-datatable>
