@@ -5,6 +5,10 @@
   <input mdInput name="name" type="text" #name required placeholder="Name of the project">
 </md-input-container>
 
+<md-input-container floatPlaceholder="auto">
+  <input mdInput name="id" required type="text" #id placeholder="ID of the project" [value]="createProjectID(name.value)">
+</md-input-container>
+
 <md-input-container>
   <input mdInput placeholder="Owner" #owner [mdAutocomplete]="auto" [formControl]="ownerStateCtrl">
 </md-input-container>
@@ -20,5 +24,5 @@
 <md-input-container>
   <textarea mdInput placeholder="Goal" #goal required></textarea>
 </md-input-container>
-<button md-button color="primary" (click)="onCreateProjectButtonClick(name.value, owner.value, description.value, goal.value)">Create Project</button>
+<button md-button color="primary" (click)="onCreateProjectButtonClick(name.value, id.value, owner.value, description.value, goal.value)">Create Project</button>
 </div>

@@ -5,6 +5,12 @@ import { MdDialogRef, MdDialog } from '@angular/material';
 import { AuthService } from '../../auth.service';
 import { User } from '../../models';
 
+export enum UserRoles {
+  User = 1,
+  Manager = 2,
+  Admin = 3,
+}
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',

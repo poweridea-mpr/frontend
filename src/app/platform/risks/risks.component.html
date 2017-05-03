@@ -1,3 +1,15 @@
-<p>
-  risks works!
-</p>
+<h2>
+  Risks
+</h2>
+
+<button md-button (click)="openAddRiskDialog()">Add Risk</button>
+
+<ngx-datatable
+  class="material striped"
+  [rows]="risks | async"
+  [columns]="columns"
+  [columnMode]="'force'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="50">
+</ngx-datatable>

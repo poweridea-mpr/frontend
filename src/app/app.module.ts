@@ -18,7 +18,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { PlatformComponent } from './platform/platform.component';
-import { RisksComponent } from './platform/risks/risks.component';
+import { RisksComponent, AddRiskDialogComponent } from './platform/risks/risks.component';
 import { ProjectsComponent, AddProjectDialogComponent } from './platform/projects/projects.component';
 import { MapComponent } from './platform/map/map.component';
 import { AdminComponent, AddUserDialogComponent } from './platform/admin/admin.component';
@@ -63,6 +63,7 @@ export const firebaseAuthConfig = {
     LandingComponent,
     PlatformComponent,
     RisksComponent,
+    AddRiskDialogComponent,
     ProjectsComponent,
     MapComponent,
     AdminComponent,
@@ -89,8 +90,10 @@ export const firebaseAuthConfig = {
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [
+    // dialogs must be entry components
     AddUserDialogComponent,
     AddProjectDialogComponent,
+    AddRiskDialogComponent,
   ]
 })
 export class AppModule { }
