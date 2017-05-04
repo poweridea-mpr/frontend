@@ -1,4 +1,4 @@
-<form class="container" (ngSubmit)="onCreateProjectButtonClick($event, name.value, id.value, owner.value, description.value, goal.value)">
+<form class="container" (ngSubmit)="onCreateProjectButtonClick($event, name.value, id.value, owner.value, description.value, goal.value, from.value, to.value)">
 <h2>Create/Edit the project</h2>
 
 <md-input-container floatPlaceholder="auto">
@@ -24,6 +24,15 @@
 <md-input-container>
   <textarea mdInput [value]="data?.goal" placeholder="Goal" #goal required></textarea>
 </md-input-container>
-<button md-button color="primary" type="submit">Create Project</button>
+
+<md-input-container>
+  <input mdInput [value]="data?.from" type="date" placeholder="From" #from required />
+</md-input-container>
+
+<md-input-container>
+  <input mdInput [value]="data?.to" type="date" placeholder="To" #to required />
+</md-input-container>
+
+<button md-button color="primary" type="submit">Create/Modify Project</button>
 
 </form>

@@ -44,6 +44,22 @@
       {{value}}
     </ng-template>
   </ngx-datatable-column>
+  <ngx-datatable-column name="From">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="To">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      {{value}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Active">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      <md-icon color="primary" *ngIf="value">done</md-icon>
+      <md-icon color="warn" *ngIf="!value">close</md-icon>
+    </ng-template>
+  </ngx-datatable-column>
   <ngx-datatable-column name="Actions">
     <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
       <a md-mini-fab (click)="onProjectSelect(row.id)"><md-icon>error_outline</md-icon></a>

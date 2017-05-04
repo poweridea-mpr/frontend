@@ -26,7 +26,7 @@ export class FooterComponent implements OnInit {
 
     this.risks.subscribe((risks: Risk[]) => {
       this.totalRisks = risks.length;
-      this.totalValue = risks.reduce((acc, risk) => +acc + (risk.value || 0), 0);
+      this.totalValue = risks.reduce((acc, risk) => acc + (parseInt(<any>risk.value, 10) || 0), 0);
     })
   }
 

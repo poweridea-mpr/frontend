@@ -39,15 +39,21 @@
   <input mdInput [value]="data?.to" type="date" placeholder="To" #to required />
 </md-input-container>
 
-<md-autocomplete #autoLevel="mdAutocomplete">
-  <md-option value="Low">Low</md-option>
-  <md-option value="Medium">Medium</md-option>
-  <md-option value="High">High</md-option>
-</md-autocomplete>
-
 <md-input-container>
   <input mdInput [value]="data?.value" type="number" placeholder="Value" #value required />
 </md-input-container>
 
-<button md-button color="primary" (click)="onCreateRiskButtonClick(name.value, project.value, owner.value, description.value, level.value, from.value, to.value, value.value)">Create Risk</button>
+<md-input-container>
+  <input mdInput [value]="data?.chance" type="Chance" placeholder="Value" #chance required />
+</md-input-container>
+
+<md-autocomplete #autoLevel="mdAutocomplete">
+  <md-option value="Insignificant">Insignificant</md-option>
+  <md-option value="Low">Low</md-option>
+  <md-option value="Medium">Medium</md-option>
+  <md-option value="High">High</md-option>
+  <md-option value="Critical">Critical</md-option>
+</md-autocomplete>
+
+<button md-button color="primary" (click)="onCreateRiskButtonClick(name.value, project.value, owner.value, description.value, level.value, from.value, to.value, value.value)">Create/Modifyk Risk</button>
 </div>

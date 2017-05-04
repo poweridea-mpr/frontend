@@ -23,6 +23,9 @@ export class ProjectsComponent implements OnInit {
     {name: 'Owner'},
     {name: 'Description'},
     {name: 'Goal'},
+    {name: 'From'},
+    {name: 'To'},
+    {name: 'Active'},
     {name: 'Actions'}
   ];
 
@@ -128,13 +131,16 @@ export class AddProjectDialogComponent {
     return name ? this.owners.filter((o) => o.indexOf(name) !== -1) : this.owners;
   }
 
-  onCreateProjectButtonClick(form, name, id, owner, description, goal) {
+  onCreateProjectButtonClick(form, name, id, owner, description, goal, from, to) {
     this.dialogRef.close(<Project>{
       id: id,
       name: name,
       owner: owner,
       description: description,
       goal: goal,
+      from: from,
+      to: to,
+      active: true
     });
   }
 

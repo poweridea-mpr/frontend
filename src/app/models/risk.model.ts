@@ -15,4 +15,6 @@ export interface Risk {
     from: Date;
     to: Date;
     value: number;
+    chance: number;
+    fixes: string;
 }

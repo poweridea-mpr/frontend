@@ -7,4 +7,7 @@ export interface Project {
   owner: string;
   description: string;
   goal: string;
+  active: boolean;
+  from: Date | string;
+  to: Date | string;
 }
