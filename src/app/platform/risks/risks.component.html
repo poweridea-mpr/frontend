@@ -4,9 +4,22 @@
 
 <button md-button (click)="openAddRiskDialog()">Add Risk</button>
 
+<md-input-container>
+  <input mdInput
+        class="filter-input"
+        placeholder="Type to filter the name column..."
+        [(ngModel)]="filterVal" />
+</md-input-container>
+
+<md-radio-group [(ngModel)]="selectedFilter">
+  <md-radio-button *ngFor="let option of riskFilters" [value]="option">
+    {{option}}
+  </md-radio-button>
+</md-radio-group>
+
 <ngx-datatable
   class="material striped"
-  [rows]="risks | async"
+  [rows]="filteredData"
   [columns]="columns"
   [columnMode]="'force'"
   [headerHeight]="50"

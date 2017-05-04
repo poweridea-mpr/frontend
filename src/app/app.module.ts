@@ -10,7 +10,7 @@ import { MdCheckboxModule, MdButtonModule,
          MdCardModule, MdCoreModule, MdTooltipModule,
          MdTabsModule, MdIconModule, MdChipsModule,
          MdDialogModule, MdSelectModule, MdAutocompleteModule,
-         MdSnackBarModule } from '@angular/material';
+         MdSnackBarModule, MdRadioModule } from '@angular/material';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
@@ -90,7 +90,7 @@ export const firebaseAuthConfig = {
     MdCardModule, MdCoreModule, MdTooltipModule,
     MdTabsModule, MdIconModule, MdChipsModule,
     MdDialogModule, MdSelectModule, MdAutocompleteModule,
-    MdSnackBarModule,
+    MdSnackBarModule, MdRadioModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
