@@ -6,6 +6,7 @@ import { MdDialogRef, MdDialog, MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Risk, User, Project } from '../../models';
 
+
 @Component({
   selector: 'app-risks',
   templateUrl: './risks.component.html',
@@ -14,6 +15,17 @@ import { Risk, User, Project } from '../../models';
 export class RisksComponent implements OnInit {
 
   risks: FirebaseListObservable<Risk[]>;
+  data: Risk[] = [];
+  filterVal = '';
+
+  selectedFilter = 'All';
+
+  riskFilters = [
+    'All',
+    'High',
+    'Medium',
+    'Low'
+  ];
 
   columns = [
     {name: 'Name'},
@@ -33,6 +45,9 @@ export class RisksComponent implements OnInit {
           orderByChild: 'project',
           equalTo: params.project? params.project : undefined,
         }
+      });
+      this.risks.subscribe(data => {
+        this.data = data;
       });
     });
   }
@@ -75,6 +90,22 @@ export class RisksComponent implements OnInit {
     });
 
     this.risks.remove(risk.$key);
+  }
+
+  get filteredData() {
+    let out: Risk[];
+    if (this.selectedFilter == 'All') {
+      out = this.data;
+    } else {
+      out = this.data.filter(item => item.level.toLowerCase() == this.selectedFilter.toLocaleLowerCase());
+    }
+
+    return out.filter(item => (
+      item.description.startsWith(this.filterVal) ||
+      item.name.startsWith(this.filterVal) ||
+      item.owner.startsWith(this.filterVal) ||
+      item.project.startsWith(this.filterVal)
+    ));
   }
 }
 
