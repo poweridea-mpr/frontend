@@ -13,14 +13,19 @@ export class MapComponent implements OnInit {
 
   constructor(public af: AngularFire) {
     this.af.database.list('/risks').subscribe(data => {
+      console.log(data);
       this.riskData = data;
-      this.drawChart();
     });
   }
 
   ngOnInit() {
+    //google.load("visualization", "1", {packages:["corechart"]});
     google.charts.load('current', {packages: ['gantt']});
     //google.charts.setOnLoadCallback(this.drawChart);
+  }
+
+  ngAfterViewInit() {
+    this.drawChart();
   }
 
   drawChart() {
@@ -33,9 +38,12 @@ export class MapComponent implements OnInit {
     data.addColumn('number', 'Percent Complete');
     data.addColumn('string', 'Dependencies');
 
+    let newRows = [];
     this.riskData.map(item => {
-      data.addRows([[item.project, item.name, item.from, item.to, null,  100,  null]]);
+      newRows.push([item.project, item.name, new Date(item.from), new Date(item.to), null,  100,  null]);
     });
+    data.addRows(newRows);
+    console.log(newRows);
 
     var options = {
       height: 400,
@@ -48,3 +56,5 @@ export class MapComponent implements OnInit {
     chart.draw(data, options);
   }
 }
+
+  
