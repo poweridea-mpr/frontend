@@ -40,7 +40,7 @@ export class MapComponent implements OnInit {
 
     let newRows = [];
     this.riskData.map(item => {
-      newRows.push([item.project, item.name, new Date(item.from), new Date(item.to), null,  100,  null]);
+      newRows.push([item.$key, item.name, new Date(item.from), new Date(item.to), null,  100,  null]);
     });
     data.addRows(newRows);
     console.log(newRows);
