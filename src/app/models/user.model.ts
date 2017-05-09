@@ -9,7 +9,7 @@ export interface User {
   nickname: string;
   email: string;
   password: string;
-  type: UserType;
+  type: string;
   name: string;
   phone: string;
 }

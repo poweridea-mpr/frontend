@@ -35,6 +35,7 @@ export class RisksComponent implements OnInit {
     {name: 'Level'},
     {name: 'Duration'},
     {name: 'Value'},
+    {name: 'Chance'},
     {name: 'Actions'}
   ];
 
@@ -138,7 +139,7 @@ export class AddRiskDialogComponent {
     this.projects = af.database.list('/projects');
   }
 
-  onCreateRiskButtonClick(name, project, owner, description, level, from, to, value) {
+  onCreateRiskButtonClick(name, project, owner, description, level, from, to, value, chance) {
     this.dialogRef.close(<Risk>{
       name: name,
       project: project,
@@ -147,7 +148,8 @@ export class AddRiskDialogComponent {
       level: level,
       from: from,
       to: to,
-      value: value
+      value: value,
+      chance: chance
     });
   }
 }

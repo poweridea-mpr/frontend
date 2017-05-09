@@ -2,7 +2,7 @@
   Risks
 </h2>
 
-<button md-button (click)="openAddRiskDialog()">Add Risk</button>
+<button md-button md-raised-button color="primary" (click)="openAddRiskDialog()">Add Risk</button>
 
 <md-input-container>
   <input mdInput
@@ -55,10 +55,20 @@
       {{row.from}} - {{row.to}}
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="Value">
+  <ngx-datatable-column name="Total Value">
     <ng-template ngx-datatable-cell-template let-value="value">
       <span *ngIf="value">{{value}} CZK</span>
       <span *ngIf="!value">0 CZK</span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Chance">
+    <ng-template ngx-datatable-cell-template let-value="value">
+      <span>{{value}} %</span>
+    </ng-template>
+  </ngx-datatable-column>
+    <ngx-datatable-column name="Risk Value">
+    <ng-template ngx-datatable-cell-template let-row="row">
+      <span>{{row.value * (row.chance / 100)}}</span>
     </ng-template>
   </ngx-datatable-column>
   <ngx-datatable-column name="Actions">
