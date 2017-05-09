@@ -55,12 +55,12 @@ export class AdminComponent implements OnInit {
 export class AddUserDialogComponent {
   constructor(public dialogRef: MdDialogRef<AddUserDialogComponent>) {}
 
-  onCreateUserButtonClick(nickname, email, password, type, name, phone) {
+  onCreateUserButtonClick(nickname, email, password, type: string, name, phone) {
     this.dialogRef.close(<User>{
       nickname: nickname,
       email: email,
       password: password,
-      type: parseInt(type, 10),
+      type: type,
       name: name,
       phone: phone,
     });
